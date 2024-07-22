@@ -1,0 +1,229 @@
+package org.software.com;
+
+import java.sql.Time;
+import java.util.Date;
+import java.util.Scanner;
+
+public class HealthBoxApplication {
+
+	public static void main(String[] args) {
+		CoachingShedule shedule = null;
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("1.Shedule an Appontment");
+			System.out.println("2.Print Appointment Details");
+			System.out.println("3.Reshedule an Appointment");
+			System.out.println("4.Get Reminder");
+			System.out.println("5.Cancel the Appointments");
+			System.out.println("6.Exit");
+			System.err.println("Enter an Option");
+			int choice = sc.nextInt();
+			switch (choice) {
+			case 1:
+				System.out.println("Enter Date : ( dd/mm/yyyy )");
+				String date = sc.next();
+				System.out.println("Enter Time : ( hh : mm )");
+				System.out.println("Available Zones are");
+				System.out.println("A  :  American/Anchorage");
+				System.out.println("B :  Europe/Paris");
+				System.out.println("C :  Asia/Tokyo");
+				System.out.println("D :  America/Phoeix");
+				
+				System.out.println("Slect the Zone");
+				
+				System.out.println("Successfully Booked");
+
+
+				shedule = new CoachingShedule(null, null, null);
+				System.out.println("1");
+				break;
+			case 2:
+				System.out.println("2");
+				shedule.printAppointment();
+				break;
+			case 3:
+				System.out.println("Current Appointment Date is :  ");
+				
+				System.out.println("Kindly Enter the number of Days to be Postponed :  ");
+				
+				System.out.println("Kindly Enter the new Time in HH : MM    :  ");
+				
+				System.out.println("Your Appointment has been rescheduled to : ");
+
+				
+				
+//AKST
+//CEST
+//JST
+//UTC
+
+
+
+				break;
+			case 4:
+				shedule.getReminder();
+
+				break;
+			case 5:
+				shedule = null;
+				System.out.println("Appointment has been Cancelled  ! !");
+				break;
+			default:
+				System.out.println("Hiii");
+			}
+		}
+
+	}
+}
+
+
+
+
+
+
+
+package org.software.com;
+
+import java.sql.Time;
+import java.util.Date;
+
+public class CoachingShedule {
+	Date dateOfAppointment;
+	Time timeOfAppointment;
+	String zone;
+
+	public CoachingShedule(Date dateOfAppointment, Time timeOfAppointment, String zone) {
+		super();
+		this.dateOfAppointment = dateOfAppointment;
+		this.timeOfAppointment = timeOfAppointment;
+		this.zone = zone;
+	}
+
+	public void getReminder() {
+		System.out.println(dateOfAppointment+ " "+timeOfAppointment);
+	}
+
+	public void printAppointment() {
+		System.out.println(dateOfAppointment+ " "+timeOfAppointment);
+	}
+
+}
+
+
+
+
+
+package classAssement;
+
+public class Employee {
+
+	String name;
+	long phoneNo[];
+	String passportNo;
+	int licenseNo;
+	String pancardNo;
+	int voterId;
+	int employeeId;
+
+	public Employee(String name, long[] phoneNo, String passportNo, int employeeId) {
+		super();
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.passportNo = passportNo;
+		this.employeeId = employeeId;
+	}
+
+	public Employee(String name, long[] phoneNo, int licenseNo, String pancardNo, int employeeId) {
+		super();
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.licenseNo = licenseNo;
+		this.pancardNo = pancardNo;
+		this.employeeId = employeeId;
+	}
+
+	public Employee(String name, long[] phoneNo, int licenseNo, int voterId, int employeeId) {
+		super();
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.licenseNo = licenseNo;
+		this.voterId = voterId;
+		this.employeeId = employeeId;
+	}
+
+}
+
+
+
+
+package classAssement;
+
+public class Student {
+
+	String name;
+	long phoneNo[];
+	String passportNo;
+	int licenseNo;
+	String pancardNo;
+	int voterId;
+
+	public Student(String name, long[] phoneNo, String passportNo) {
+		super();
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.passportNo = passportNo;
+		
+	}
+
+	public Student(String name, long[] phoneNo, int licenseNo, String pancardNo) {
+		super();
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.licenseNo = licenseNo;
+		this.pancardNo = pancardNo;
+		
+	}
+
+	public Student(String name, long[] phoneNo, int licenseNo, int voterId) {
+		super();
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.licenseNo = licenseNo;
+		this.voterId = voterId;
+	
+	}
+
+}
+
+
+
+
+
+package classAssement;
+
+import java.util.Iterator;
+import java.util.Random;
+
+public class Register<T> {
+
+	String redisterId;
+
+	void display(T obj) {
+		System.out.println(obj);
+	}
+
+
+	static String generateRegisterId(int n) {
+		Random rm=new Random(256);
+		String id="";
+		for (int i = 0; i <9; i++) {
+	          int rn=rm.nextInt(256)+1;
+	          id=id+rn;
+		}
+		return id;
+	}
+	
+	public static void main(String[] args) {
+	System.out.println(generateRegisterId(8));
+	}
+}
