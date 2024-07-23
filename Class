@@ -1,5 +1,190 @@
 package org.software.com;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+public class CoachingShedule {
+	LocalDate dateOfAppointment;
+	LocalTime timeOfAppointment;
+	String zone;
+
+	public CoachingShedule(LocalDate dateOfAppointment, LocalTime timeOfAppointment, String zone) {
+		super();
+		this.dateOfAppointment = dateOfAppointment;
+		this.timeOfAppointment = timeOfAppointment;
+		this.zone = zone;
+
+	}
+
+	public void getReminder() {
+		LocalDateTime d=LocalDateTime.of(dateOfAppointment, timeOfAppointment);
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");  
+		System.out.println(d.format(myFormatObj));
+		
+	}
+	//AKST
+	//CEST
+	//JST
+	//UTC
+	public void printAppointment() {
+		String str="";
+		LocalDateTime d=LocalDateTime.of(dateOfAppointment, timeOfAppointment);
+		System.out.println(d);
+		 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+             if(zone.equals("American/Anchorage"))      
+            	 str="AKST";
+             else if(zone.equals("Europe/Paris"))      
+            	 str="CEST";
+             else if(zone.equals("Asia/Tokyo"))      
+            	 str="JST";
+             else if(zone.equals("America/Phoeix"))      
+            	 str="UTC";
+		String formattedDate = d.format(myFormatObj)+" AM "+str;
+		System.out.println(formattedDate);
+	}
+
+}
+
+
+
+
+package org.software.com;
+
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+public class HealthBoxApplication  {
+
+	public static void main(String[] args) {
+		CoachingShedule shedule = null;
+		String date;
+		String time;
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("1.Shedule an Appontment");
+			System.out.println("2.Print Appointment Details");
+			System.out.println("3.Reshedule an Appointment");
+			System.out.println("4.Get Reminder");
+			System.out.println("5.Cancel the Appointments");
+			System.out.println("6.Exit");
+			System.out.println("Enter an Option");
+			int choice = sc.nextInt();
+			switch (choice) {
+			case 1:
+				System.out.println("Enter Date : ( yyyy-mm-dd )");
+				date = sc.next();
+				DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy-mm-dd");
+				LocalDate appDate=LocalDate.parse(date);
+				System.out.println("Enter Time : ( hh : mm )");
+				time = sc.next();
+				DateTimeFormatter dtf1=DateTimeFormatter.ofPattern("hh:mm");
+				LocalTime appTime=LocalTime.parse(time);
+				System.out.println("Available Zones are");
+				System.out.println("A  :  American/Anchorage");
+				System.out.println("B :  Europe/Paris");
+				System.out.println("C :  Asia/Tokyo");
+				System.out.println("D :  America/Phoeix");
+				System.out.println("Slect the Zone");
+				String zone = sc.next();
+				shedule = new CoachingShedule(appDate,appTime, zone);
+				System.out.println("Successfully Booked");
+				System.out.println("--------------------------------------");
+				break;
+			case 2:
+				try {
+					shedule.printAppointment();
+				} catch (NullPointerException e) {
+					System.out.println("No Appointmnets are Available");
+				}
+				break;
+			case 3:
+				System.out.println("Current Appointment Date is :  ");
+				shedule.printAppointment();
+				System.out.println("Kindly Enter the number of Days to be Postponed :  ");
+				date = sc.next();
+				System.out.println("Kindly Enter the new Time in HH : MM    :  ");
+				time = sc.next();
+				System.out.println("Your Appointment has been rescheduled to : ");
+
+
+
+				break;
+			case 4:
+				try {
+					shedule.getReminder();
+				} catch (NullPointerException e) {
+					System.out.println("No Appointmnets are Available");
+				}
+				break;
+			case 5:
+				shedule = null;
+				System.out.println("Appointment has been Cancelled  ! !");
+				break;
+			case 6:
+				System.exit(0);
+				System.out.println(" Exited Successfully ");
+
+				break;
+			default:
+				System.out.println("Sorry Invalid Option");
+			}
+		}
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package org.software.com;
+
 import java.sql.Time;
 import java.util.Date;
 import java.util.Scanner;
