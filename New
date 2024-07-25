@@ -1,0 +1,80 @@
+package classAssement;
+
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+public class VerifyBoooks
+{
+	public static void main(String[] args)
+	{
+		TreeSet<Book> books= new TreeSet<>();
+		books.add(new Book(1003, "Java Programming", 523.0, "Gild Bracha"));
+		books.add(new Book(1004, "Read C++", 295.0, "Henry Harvin"));
+		books.add(new Book(1005, ".Net platform", 3497.0, "Mark J.Price"));
+		books.add(new Book(1001, "Python Learning", 715.0, "Martic C.Brown"));
+		books.add(new Book(1002, "Modern Mainframe", 295.0, "Sharad"));
+                                
+
+
+		for (Book book : books) 
+		{
+			System.out.println(book);
+		}
+	}
+}
+
+
+
+
+
+
+package classAssement;
+
+
+
+public class Book implements Comparable<Book> {
+
+	int bookId;
+	String title;
+	double price;
+	String author;
+//	LocalDate dop;
+
+	public Book(int bookId, String title, double price, String author) {
+		super();
+		this.bookId = bookId;
+		this.title = title;
+		this.price = price;
+		this.author = author;
+//		System.out.println("Exe");
+//		this.dop = dop;
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+	@Override
+	public int compareTo(Book o) {
+		return this.author.compareTo(o.author);
+	
+	}
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", title=" + title + ", price=" + price + ", author=" + author + "]";
+	}
+
+	
+}
